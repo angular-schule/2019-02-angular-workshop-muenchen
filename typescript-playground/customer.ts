@@ -1,8 +1,6 @@
 export class Customer {
-    private id: number;
 
-    constructor(id: number) {
-        this.id = id;
+    constructor(private id: number) {
 
         // const self = this;
         setTimeout(() => console.log(this.fooBar()), 2000);
