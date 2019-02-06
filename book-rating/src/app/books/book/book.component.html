@@ -18,7 +18,7 @@
 
       <p>Preis: {{ book.price }}</p>
 
-      <button class="btn btn-secondary mr-2" (click)="rateUp()">+</button>
+      <button class="btn btn-secondary mr-2" data-testing-id="rateUpBtn" (click)="rateUp()">+</button>
       <button class="btn btn-secondary mr-2" (click)="rateDown()">–</button>
     </div>
   </div>
