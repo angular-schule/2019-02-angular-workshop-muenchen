@@ -86,5 +86,14 @@ describe('BookComponent', () => {
   });
 
 
-  it('should display the correct data', () => {});
+  it('should display the correct rating', () => {
+      // Element holen und auslesen
+      const ratingBox = fixture.debugElement
+        .query(By.css('[data-testing-id="ratingBox"]'))
+        .nativeElement;
+
+      // in .textContent steht der Text eines DOM-Elements
+      expect(ratingBox.textContent)
+        .toEqual(component.book.rating.toString());
+  });
 });
