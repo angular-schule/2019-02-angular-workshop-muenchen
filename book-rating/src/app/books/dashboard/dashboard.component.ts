@@ -34,4 +34,16 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  updateList(book: Book) {
+    this.books = this.books
+      .map(b => b.isbn === book.isbn ? book : b)
+      .sort((a, b) => b.rating - a.rating);
+  }
+
+
+  logBooks() {
+    console.log(this.books);
+  }
+
 }

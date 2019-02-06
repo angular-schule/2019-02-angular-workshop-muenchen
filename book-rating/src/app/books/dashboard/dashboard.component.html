@@ -1,6 +1,9 @@
+<button class="btn btn-danger" (click)="logBooks()">Log books</button>
+
 <br-book
     *ngFor="let b of books"
-    [book]="b"></br-book>
+    [book]="b"
+    (rate)="updateList($event)"></br-book>
 
 <ul>
     <li *ngFor="let b of books; index as i">
