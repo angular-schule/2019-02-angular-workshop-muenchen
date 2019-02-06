@@ -10,7 +10,9 @@ export class DashboardComponent implements OnInit {
 
   books: Book[];
 
-  constructor() {
+  constructor() { }
+
+  ngOnInit() {
     this.books = [
       {
         isbn: '000',
@@ -29,9 +31,6 @@ export class DashboardComponent implements OnInit {
         rating: 3
       }
     ];
-  }
-
-  ngOnInit() {
   }
 
 
