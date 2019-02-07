@@ -18,7 +18,7 @@ describe('BookRatingService', () => {
     };
   });
 
-  it('should rate up the book by one', () => {    
+  it('should rate up the book by one', () => {
     // Act
     const ratedBook = service.rateUp(book);
 

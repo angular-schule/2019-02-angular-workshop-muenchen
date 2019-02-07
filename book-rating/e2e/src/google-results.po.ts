@@ -1,7 +1,7 @@
-import { $ } from 'protractor';
+import { $, ElementArrayFinder } from 'protractor';
 
 export class GoogleResultsPage {
-    getResults() {
+    getResults(): ElementArrayFinder {
         const container = $('div#search');
         return container.$$('div.srg div.g');
     }
