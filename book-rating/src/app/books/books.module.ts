@@ -21,10 +21,6 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     BooksRoutingModule,
     ButtonSharedModule,
     ReactiveFormsModule
-
-  ],
-  exports: [
-    DashboardComponent
   ]
 })
 export class BooksModule { }
