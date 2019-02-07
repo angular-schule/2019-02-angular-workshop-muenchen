@@ -16,7 +16,7 @@
 
       {{ log() }}
 
-      <p>Preis: {{ book.price }}</p>
+      <p>Preis: {{ book.price | currency:'EUR' }}</p>
 
       <button class="btn btn-secondary mr-2" data-testing-id="rateUpBtn" (click)="rateUp()">+</button>
       <button class="btn btn-secondary mr-2" (click)="rateDown()">–</button>
