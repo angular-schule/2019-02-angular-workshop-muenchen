@@ -7,18 +7,20 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookComponent } from './book/book.component';
 import { ButtonSharedModule } from '../button-shared/button-shared.module';
 import { CreateBookComponent } from './create-book/create-book.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     BookComponent,
-    CreateBookComponent
+    CreateBookComponent,
+    BookDetailsComponent
   ],
   imports: [
     CommonModule,
     BooksRoutingModule,
     ButtonSharedModule,
-    ReactiveFormsModule // import { ReactiveFormsModule } from '@angular/forms';
+    ReactiveFormsModule
 
   ],
   exports: [
