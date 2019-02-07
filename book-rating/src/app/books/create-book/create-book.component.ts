@@ -30,6 +30,10 @@ export class CreateBookComponent implements OnInit {
         new FormControl('')
       ])
     });
+
+
+    this.bookForm.get('isbn').valueChanges
+      .subscribe(e => console.log(e));
   }
 
   get authors(): FormArray {

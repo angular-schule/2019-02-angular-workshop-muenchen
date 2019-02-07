@@ -4,3 +4,4 @@ Augury: https://chrome.google.com/webstore/detail/augury/elgalmkoelokbchhkhaccko
 ngRev: https://github.com/mgechev/ngrev
 
 https://angular.schule/blog/2018-04-swagger-codegen
+https://toddmotto.com/building-tesla-range-calculator-angular-2-reactive-forms
