@@ -31,4 +31,10 @@ export class DashboardComponent implements OnInit {
     console.log(this.books);
   }
 
+  createBook(book: Book) {
+    this.bs.create(book).subscribe(() => {
+      this.books = [...this.books, book];
+    });
+  }
+
 }

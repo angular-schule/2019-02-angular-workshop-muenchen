@@ -1,4 +1,4 @@
-<form [formGroup]="bookForm">
+<form [formGroup]="bookForm" (ngSubmit)="submitForm()">
   <div class="form-group">
     <label>ISBN</label>
     <input type="text" class="form-control" formControlName="isbn">
@@ -32,6 +32,10 @@
       *ngFor="let c of authors.controls; index as i"
       [formControlName]="i">
   </div>
+
+  <button type="submit"
+    [disabled]="bookForm.invalid"
+    class="btn btn-success">Submit</button>
 </form>
 
 {{ bookForm.value | json }}
