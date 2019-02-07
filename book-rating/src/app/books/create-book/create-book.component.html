@@ -1,0 +1,30 @@
+<form [formGroup]="bookForm">
+  <div class="form-group">
+    <label>ISBN</label>
+    <input type="text" class="form-control" formControlName="isbn">
+  </div>
+  
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" class="form-control" formControlName="title">
+  </div>
+  
+  <div class="form-group">
+    <label>Description</label>
+    <textarea class="form-control" formControlName="description"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Price</label>
+    <input type="number" class="form-control" formControlName="price">
+  </div>
+  
+  <div formArrayName="authors" class="form-group">
+    <label>Authors</label>
+    <input class="form-control mb-2" type="text"
+      *ngFor="let c of authors.controls; index as i"
+      [formControlName]="i">
+  </div>
+</form>
+
+{{ bookForm.value | json }}
