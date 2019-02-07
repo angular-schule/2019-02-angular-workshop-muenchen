@@ -35,4 +35,14 @@ export class CreateBookComponent implements OnInit {
     // Nur verwenden, wenn man ganz sicher ist, dass der Typ stimmt!
   }
 
+  isInvalid(name: string) {
+    const control = this.bookForm.get(name);
+    return control.invalid && control.dirty; // oder touched
+  }
+
+  hasError(name: string, errorCode: string) {
+    const control = this.bookForm.get(name);
+    return control.hasError(errorCode) && control.dirty;
+  }
+
 }
