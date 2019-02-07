@@ -2,3 +2,5 @@ https://angular.io/styleguide
 https://doesitmutate.xyz/
 Augury: https://chrome.google.com/webstore/detail/augury/elgalmkoelokbchhkhacckoklkejnhcd
 ngRev: https://github.com/mgechev/ngrev
+
+https://angular.schule/blog/2018-04-swagger-codegen

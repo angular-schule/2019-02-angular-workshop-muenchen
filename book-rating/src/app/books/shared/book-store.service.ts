@@ -1,12 +1,32 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Book } from './book';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookStoreService {
 
-  constructor() { }
+  private apiUrl = 'https://api.angular.schule';
+
+  constructor(private http: HttpClient) { }
+  
+  getAll(): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.apiUrl}/books`); // TODO: Korrekter Typ?
+  }
+
+  getSingle(isbn: string): Observable<Book> {
+    return this.http.get<Book>(`${this.apiUrl}/book/${isbn}`);
+  }
+
+  create(book: Book): Observable<any> {
+    return this.http.post(
+      `${this.apiUrl}/book`,
+      book,
+      { responseType: 'text' } // weil API kein JSON liefert, sondern leeren String
+    );
+  }
 
   // Services haben keine Lifecycle-Hooks!
   // ngOnInit() {}
