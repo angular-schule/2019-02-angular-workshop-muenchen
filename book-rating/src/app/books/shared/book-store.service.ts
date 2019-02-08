@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Book } from './book';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +13,43 @@ export class BookStoreService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.apiUrl}/booksX`).pipe(
+  getAll(): Observable<Book[]> { // TODO: any ist nicht gut => konkreten Typ einsetzen
+    return this.http.get<any[]>(`${this.apiUrl}/books`).pipe(
+      map(rawBooks => rawBooks.map(
+        rawBook => this.mapToBook(rawBook)
+      )),
       catchError(err => {
         console.log('Fehler', err);
         return of(this.getAllStatic());
       })
-    ); // TODO: Korrekter Typ?
+    );
+  }
+
+  search(term: string): Observable<Book[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/books/search/${term}`).pipe(
+      map(rawBooks => rawBooks ? rawBooks : []),
+      map(rawBooks => rawBooks.map(
+        rawBook => this.mapToBook(rawBook))
+      )
+    );
   }
 
   getSingle(isbn: string): Observable<Book> {
-    return this.http.get<Book>(`${this.apiUrl}/book/${isbn}`);
+    return this.http.get<any>(`${this.apiUrl}/book/${isbn}`).pipe(
+      map(rawBook => this.mapToBook(rawBook))
+    );
+  }
+
+  private mapToBook(rawBook: any): Book {
+     return {
+       isbn: rawBook.isbn,
+       title: rawBook.title,
+       description: rawBook.description,
+       price: rawBook.price,
+       authors: rawBook.authors,
+       firstThumbnailUrl: rawBook.firstThumbnailUrl,
+       rating: rawBook.rating
+     };
   }
 
   create(book: Book): Observable<any> {
