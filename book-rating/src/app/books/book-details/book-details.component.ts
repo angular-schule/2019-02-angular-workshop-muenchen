@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BookStoreService } from '../shared/book-store.service';
 import { Book } from '../shared/book';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'br-book-details',
@@ -10,21 +12,16 @@ import { Book } from '../shared/book';
 })
 export class BookDetailsComponent implements OnInit {
 
-  book: Book;
+  book$: Observable<Book>;
 
   constructor(
     private route: ActivatedRoute,
     private bs: BookStoreService) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      const isbn = params.get('isbn');
-      console.log(isbn);
-
-      this.bs.getSingle(isbn)
-        .subscribe(book => this.book = book);
-    });
-    // oder: const isbn = this.route.snapshot.paramMap.get('isbn')
+    this.book$ = this.route.paramMap.pipe(
+      switchMap(params => this.bs.getSingle(params.get('isbn')))
+    );
   }
 
 }
