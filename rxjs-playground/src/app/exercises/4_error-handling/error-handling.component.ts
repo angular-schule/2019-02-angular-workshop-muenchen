@@ -19,7 +19,12 @@ export class ErrorHandlingComponent implements OnInit {
 
   start() {
     this.es.randomError().pipe(
-      // TODO
+      catchError(err => {
+        console.log('Böser Fehler passiert');
+        // return throwError('Oh nein...');
+        return of('Kein Fehler passiert 😇');
+      })
+      // retry(5)
     ).subscribe(
       value => this.logStream$.next(value),
       err => this.logStream$.next('💥 ERROR: ' + err)

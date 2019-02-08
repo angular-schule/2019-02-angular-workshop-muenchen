@@ -22,14 +22,20 @@ export class GameScoreComponent implements OnInit {
 
     /******************************/
 
-    
+    this.score$.pipe(
+      scan((acc, item) => acc + item, 0)
+    ).subscribe(score => this.currentScore = score);
+
+    this.score$.pipe(
+      reduce((acc, item) => acc + item)
+    ).subscribe(score => this.finalScore = score);
 
     /******************************/
 
     this.score$.subscribe(
       value => this.logStream$.next(value),
       err => {},
-      () => this.logStream$.next('❌ COMPLETED')
+      () => this.logStream$.next('❌️ COMPLETED')
     );
   }
 

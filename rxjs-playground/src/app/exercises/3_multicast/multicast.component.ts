@@ -10,7 +10,7 @@ import { share } from 'rxjs/operators';
 })
 export class MulticastComponent implements OnInit {
 
-  measureValues$: Observable<number>;
+  measureValues$: Subject<number>;
 
   listeners = [];
   logStream$ = new Subject();
@@ -20,7 +20,14 @@ export class MulticastComponent implements OnInit {
   ngOnInit() {
     /*******************************/
 
-    
+    this.measureValues$ = new ReplaySubject(5);
+
+    this.mvs.getValues()
+      .subscribe(this.measureValues$);
+
+    /*this.measureValues$ = this.mvs.getValues().pipe(
+      share()
+    );*/
 
     /*******************************/
   }
