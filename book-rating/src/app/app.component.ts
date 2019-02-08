@@ -37,12 +37,6 @@ export class AppComponent implements OnInit {
     setTimeout(() => sub.unsubscribe(), 1000);
 
 
-    
-
-
-    
-
-
     function observable(observer) {
       setTimeout(() => observer.next('A'), 2000);
 

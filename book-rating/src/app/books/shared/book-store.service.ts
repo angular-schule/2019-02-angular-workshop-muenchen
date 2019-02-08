@@ -1,7 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Book } from './book';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,14 @@ export class BookStoreService {
   private apiUrl = 'https://api.angular.schule';
 
   constructor(private http: HttpClient) { }
-  
+
   getAll(): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.apiUrl}/books`); // TODO: Korrekter Typ?
+    return this.http.get<Book[]>(`${this.apiUrl}/booksX`).pipe(
+      catchError(err => {
+        console.log('Fehler', err);
+        return of(this.getAllStatic());
+      })
+    ); // TODO: Korrekter Typ?
   }
 
   getSingle(isbn: string): Observable<Book> {
